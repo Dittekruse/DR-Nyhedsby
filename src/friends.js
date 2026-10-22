@@ -182,12 +182,13 @@ async function loadFriends() {
       .maybeSingle();
 
     if (!profile) continue;
+friendsList.appendChild(
+  createFriendRow(profile.username, 'Se by', () => {
+    window.location.href =
+      `./by.html?user=${encodeURIComponent(profile.id)}`;
+  })
+);
 
-    friendsList.appendChild(
-      createFriendRow(profile.username, 'Se by (kommer snart)', () => {
-        showMessage(`Næste trin er at åbne ${profile.username}s by.`);
-      })
-    );
   }
 
   if (!requestsList.children.length) {

@@ -13,7 +13,9 @@
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
+import { supabase } from './supabase.js';
+let viewingFriend =
+  new URLSearchParams(window.location.search).has('user');
 // ---------- 1. SPILLETS INDSTILLINGER ----------
 
 
@@ -524,7 +526,14 @@ const BUILDING_CREATORS = {
   drByen: createDRByen
 };
 
-function saveCity() {
+
+async function saveCity() {
+    
+ if (viewingFriend) {
+  console.warn('Du kan ikke gemme ændringer, mens du besøger en vens by.');
+  return;
+}
+
   const savedBuildings = plots
     .filter((plot) => plot.userData.buildingType)
     .map((plot) => ({
@@ -532,27 +541,112 @@ function saveCity() {
       buildingType: plot.userData.buildingType
     }));
 
+  // Gem lokalt som backup
   localStorage.setItem(
     'drNyhedsbyBuildings',
     JSON.stringify(savedBuildings)
   );
+
+  // Gem også byen i Supabase
+  const { data: sessionData, error: sessionError } =
+    await supabase.auth.getSession();
+
+  const user = sessionData?.session?.user;
+
+  if (sessionError || !user) {
+    console.warn('Byen er gemt lokalt, men du er ikke logget ind i Supabase.');
+    return;
+  }
+
+  const { error } = await supabase
+    .from('cities')
+    .upsert(
+      {
+        user_id: user.id,
+        city_name: 'Min by',
+        coins: coins,
+        buildings: savedBuildings,
+        updated_at: new Date().toISOString()
+      },
+      { onConflict: 'user_id' }
+    );
+
+  if (error) {
+    console.error('Kunne ikke gemme byen i Supabase:', error.message);
+    plotMessage.textContent =
+      'Byen er gemt lokalt, men kunne ikke gemmes online.';
+  } else {
+    console.log('Byen er gemt online!');
+  }
 }
 
-function loadCity() {
-  let savedBuildings = [];
+async function loadCity() {
+  const requestedUserId = new URLSearchParams(
+    window.location.search
+  ).get('user');
 
-  try {
-    savedBuildings = JSON.parse(
-      localStorage.getItem('drNyhedsbyBuildings') ?? '[]'
+  const { data: sessionData, error: sessionError } =
+    await supabase.auth.getSession();
+
+  const user = sessionData?.session?.user;
+
+  if (sessionError || !user) {
+    console.warn('Du skal være logget ind for at indlæse byen.');
+    updateHUD();
+    return;
+  }
+
+  viewingFriend =
+  requestedUserId !== null && requestedUserId !== user.id;
+  const cityUserId = viewingFriend ? requestedUserId : user.id;
+
+  const { data, error } = await supabase
+    .from('cities')
+    .select('buildings, coins')
+    .eq('user_id', cityUserId)
+    .maybeSingle();
+
+  if (error) {
+    console.error('Kunne ikke hente byen:', error.message);
+    updateHUD();
+    return;
+  }
+
+  if (viewingFriend && !data) {
+    console.warn('Vennens by kunne ikke findes eller tilgås.');
+    updateHUD();
+    return;
+  }
+
+  let savedBuildings = data?.buildings ?? [];
+
+  if (!viewingFriend) {
+    if (typeof data?.coins === 'number') {
+      coins = data.coins;
+    }
+
+    localStorage.setItem(
+      'drNyhedsbyBuildings',
+      JSON.stringify(savedBuildings)
     );
-  } catch (error) {
-    console.warn('Kunne ikke indlæse den gemte by.', error);
+    localStorage.setItem('drNyhedsbyCoins', String(coins));
+
+    if (!data) {
+      try {
+        savedBuildings = JSON.parse(
+          localStorage.getItem('drNyhedsbyBuildings') ?? '[]'
+        );
+      } catch (error) {
+        console.warn('Kunne ikke indlæse den lokale by.', error);
+      }
+    }
   }
 
   for (const saved of savedBuildings) {
     const plot = plots.find(
       (item) => item.userData.id === saved.plotId
     );
+
     const createBuilding = BUILDING_CREATORS[saved.buildingType];
 
     if (!plot || !createBuilding || plot.userData.built) continue;
@@ -564,7 +658,14 @@ function loadCity() {
     plot.material.color.set('#8cbd83');
     plot.material.emissive.set('#000000');
   }
+
+  if (viewingFriend) {
+    document.body.dataset.viewingFriend = 'true';
+  }
+
+  updateHUD();
 }
+
 // ---------- 5. BYGGEGRUNDE ----------
 
 const plots = [];
@@ -909,6 +1010,7 @@ for (const [buildingId, buildingName] of Object.entries(BUILDING_NAMES)) {
   `;
 
   button.addEventListener('click', () => {
+        if (viewingFriend) return;
     selectedBuilding = buildingId;
     updateHUD();
   });
@@ -991,7 +1093,11 @@ function updateHUD() {
 
 // Bygger den valgte bygning på den valgte grund.
 buildButton.addEventListener('click', () => {
-  if (!selectedPlot || selectedPlot.userData.built) return;
+    if (viewingFriend) {
+    plotMessage.textContent = 'Du besøger en vens by. Du kan ikke bygge her.';
+    return;
+  }
+    if (!selectedPlot || selectedPlot.userData.built) return;
 
   const buildingId = selectedBuilding;
   const price = BUILDING_PRICES[buildingId];
@@ -1035,8 +1141,10 @@ buildButton.addEventListener('click', () => {
   updateHUD();
   plotMessage.textContent = `${buildingName} er bygget! 🎉`;
 });
-loadCity();
-updateHUD();
+loadCity().catch((error) => {
+  console.error('Fejl ved indlæsning af byen:', error);
+  updateHUD();
+});
 
 
 // ---------- 7. KLIK PÅ GRUNDENE ----------

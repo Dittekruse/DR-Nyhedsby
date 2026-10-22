@@ -184,14 +184,46 @@
 
 
 
-    <div class="feature-card">
-      <span class="feature-icon">👥</span>
-      <h3>Venner</h3>
-      <p>Besøg venners byer, og sammenlign jeres fremskridt.</p>
-      <span class="card-action">KOMMER SNART</span>
-    </div>
+   
+<button class="feature-card" id="open-friends-button" type="button" style="text-align:left;width:100%;color:var(--ink);background:white;">
+  <span class="feature-icon">👥</span>
+  <h3>Venner</h3>
+  <p>Find venner, send venneanmodninger, og se hvem der er online i din nyhedsby.</p>
+  <span class="card-action">ÅBN VENNER →</span>
+</button>
+
 
   </div>
+</section>
+
+<section class="panel hidden" id="friends-panel">
+  <p class="eyebrow">DIT NETVÆRK</p>
+  <h2>Venner</h2>
+  <p class="intro">Søg efter andre spillere, og byg dit netværk.</p>
+
+  <label for="friend-search">Søg på brugernavn</label>
+  <input
+    id="friend-search"
+    type="text"
+    minlength="3"
+    maxlength="20"
+    placeholder="Skriv et brugernavn"
+    style="display:block;width:100%;padding:12px;margin:8px 0 12px;"
+  >
+
+  <button id="friend-search-button" class="red" type="button">Søg</button>
+  <p id="friends-message" role="status" aria-live="polite"></p>
+
+  <h3>Søgeresultater</h3>
+  <div id="friend-search-results"></div>
+
+  <h3>Venneanmodninger</h3>
+  <div id="friend-requests"></div>
+
+  <h3>Mine venner</h3>
+  <div id="friends-list"></div>
+
+  <button id="back-home-button" type="button">← Tilbage til forsiden</button>
 </section>
 
     <section class="panel hidden" id="quiz">
@@ -416,5 +448,6 @@
 
   </script>
   <script type="module" src="./src/login-ui.js"></script>
+  <script type="module" src="./src/friends.js"></script>
 </body>
 </html>

@@ -15,17 +15,23 @@ function showMessage(text) {
   message.textContent = text;
 }
 
-async function getCurrentUser() {
-  const { data, error } = await supabase.auth.getUser();
 
-  if (error || !data.user) {
-    showMessage('Du skal være logget ind for at bruge venner.');
+async function getCurrentUser() {
+  const { data, error } = await supabase.auth.getSession();
+  const user = data.session?.user;
+
+  if (error || !user) {
+    showMessage(
+      'Login-sessionen kunne ikke findes. Prøv at logge ud og ind igen.'
+    );
+    console.error('Fejl ved hentning af login-session:', error);
     return null;
   }
 
-  currentUserId = data.user.id;
-  return data.user;
+  currentUserId = user.id;
+  return user;
 }
+
 
 function createFriendRow(username, buttonText, onClick) {
   const row = document.createElement('div');

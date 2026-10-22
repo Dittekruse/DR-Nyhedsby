@@ -119,9 +119,31 @@
     <p>Test din viden om ugens nyheder, og tjen mønter til din egen by — ét spørgsmål ad gangen.</p>
   </header>
 
-  <main>
-    
-<section class="panel" id="home">
+<main>
+  <section class="panel" id="login-panel">
+  <p class="eyebrow">VELKOMMEN TIL DR NYHEDSBY</p>
+  <h2>Log ind på din by</h2>
+  <p class="intro">Opret en konto, eller log ind for at fortsætte.</p>
+
+  <label for="username">Brugernavn</label>
+  <input id="username" autocomplete="username"
+    minlength="3" maxlength="20"
+    style="display:block;width:100%;padding:12px;margin:8px 0 16px;">
+
+  <label for="password">Adgangskode</label>
+  <input id="password" type="password"
+    autocomplete="current-password"
+    style="display:block;width:100%;padding:12px;margin:8px 0 16px;">
+
+  <div class="button-row">
+    <button id="login-button" class="red">Log ind</button>
+    <button id="signup-button">Opret konto</button>
+  </div>
+
+  <p id="login-message" role="status" aria-live="polite"></p>
+</section>
+
+<section class="panel hidden" id="home">
   <p class="eyebrow">HVAD VIL DU LAVE I DAG?</p>
   <h2>Udforsk nyhedsbyen</h2>
   <p class="intro">
@@ -393,5 +415,6 @@
 
 
   </script>
+  <script type="module" src="./src/login-ui.js"></script>
 </body>
 </html>

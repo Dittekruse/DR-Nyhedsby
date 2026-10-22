@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DR Nyhedsby</title>
+  <style>:root{--red:#e31b3d;--ink:#111;--paper:#f6f5f2;--muted:#656565;--green:#216e43;--line:#deddd8}*{box-sizing:border-box}body{background:var(--paper);color:var(--ink);margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.55}button{font:inherit;cursor:pointer}.topline{background:var(--red);height:7px}header{color:var(--ink);border-bottom:1px solid var(--line);background:#fff;padding:18px max(22px,50% - 560px) 30px}.brand-row{border-bottom:1px solid #ecebe8;align-items:center;gap:18px;padding-bottom:24px;display:flex}.dr-logo{border-radius:2px;width:104px;height:auto;display:block}.brand-divider{background:#d7d7d7;width:1px;height:42px}.brand-label{letter-spacing:1.8px;text-transform:uppercase;font-size:12px;font-weight:800}.eyebrow{color:var(--red);letter-spacing:1.7px;text-transform:uppercase;margin:0 0 9px;font-size:12px;font-weight:800}header h1{letter-spacing:-2.3px;max-width:800px;margin:27px 0 12px;font-size:clamp(38px,5.2vw,64px);line-height:.99}header p{color:#4b4b4b;max-width:650px;margin:0;font-size:18px}main{max-width:1164px;margin:30px auto 56px;padding:0 22px}.panel{border:1px solid var(--line);background:#fff;border-radius:8px;padding:clamp(22px,4vw,38px);box-shadow:0 8px 28px #00000009}.panel h2{color:var(--ink);letter-spacing:-.8px;margin:0 0 12px;font-size:clamp(26px,3vw,36px);line-height:1.12}.panel h3{color:var(--ink)}.panel>p:first-child{color:var(--red);letter-spacing:1.6px;text-transform:uppercase;font-size:12px;font-weight:800}.intro{color:#4c4c4c;max-width:720px;font-size:17px}.back-link{border:1px solid var(--ink);color:var(--ink);background:#fff;border-radius:4px;margin:5px 8px 5px 0;padding:12px 18px;font-weight:750;text-decoration:none;display:inline-block}.button-row{flex-wrap:wrap;gap:10px;margin-top:20px;display:flex}button{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:4px;margin:5px 8px 5px 0;padding:12px 18px;font-weight:750;transition:background .15s,transform .15s}button:hover{background:#333;transform:translateY(-1px)}button.red{background:var(--red);border-color:var(--red)}button.red:hover{background:#bd1430}button:disabled{cursor:default;opacity:.85}.muted{color:var(--muted)}.hidden{display:none!important}.answer{text-align:left;width:100%;color:var(--ink);background:#fff;border:1px solid #d5d4d0;border-radius:5px;margin:10px 0;padding:15px 17px;display:block}.answer:hover:not(:disabled){color:#111;background:#f7f6f3;border-color:#111}.answer.correct{border-color:var(--green);color:#155b38;background:#e7f3e9}.answer.incorrect{border-color:var(--red);color:#9f1028;background:#fde9ec}#feedback{border-left:4px solid var(--red);background:#f7f6f3;border-radius:0 5px 5px 0;margin-top:18px;padding:16px 18px}.friend{border:1px solid var(--line);background:#f8f7f4;border-radius:5px;justify-content:space-between;align-items:center;gap:12px;margin:9px 0;padding:15px 16px;display:flex}#result h1{background:var(--ink);color:#fff;border-bottom:6px solid var(--red);border-radius:5px;padding:24px;font-size:clamp(36px,6vw,56px)}#review p{border-bottom:1px solid var(--line);padding:10px 0}@media (width<=700px){header{padding:17px 20px 26px}main{margin-top:16px;padding:0 14px}.button-row button,.button-row .back-link{text-align:center;width:100%}.brand-row{gap:12px}.dr-logo{width:84px}header h1{letter-spacing:-1.3px}}</style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="brand-row">
+      <img class="dr-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuIAAADeCAMAAABPGpXyAAAAZlBMVEUAAAD////b29v39/d2dnYtLS37+/t/f3/e3t6xsbEmJibBwcEXFxfr6+s0NDQRERFmZmaioqJRUVHl5eXx8fHHx8chISHS0tJERERYWFhwcHA5OTm4uLioqKgbGxuYmJiIiIiQkJBY0X8fAAAKw0lEQVR4nO3dCWKbOhRAUTAO8RASbMB4Hva/ye+0SeumBYR5ip7fv2cBjXBuHQZJROlkBJg1SaPJevYEGDVbT6LRUwSY9TQicZhG4jCOxGEcicM4EodxJA7jSBzGkTiMI3EYR+IwjsRhHInDOBKHcSQO40gcxpE4jCNxGEfiMI7EYRyJwzgSh3EkDuNIHMaROIwjcRhH4jCOxGEcicM4EodxJA7jSBzGkTiMI3EYR+IwjsRhHInDOBKHcSQO40gcxpE4jCNxGEfiMI7EYRyJwzgSh3EkDuNIHMaROIwjcRhH4jCOxGGcnsSP+bNy4/F2m2+W6/Vu97R6Ez78Zeij62e8zfPN+wch/TnI05P4KUmVS9IkKcssy4qirqaL02W8Fjv6TRn66Pp5/yTKrJjU+8Ul1xFQEzWJr+r44STX33F1yXfH4Yd/CH0sAyTZaK84czWJzyahf1P3K6rDeDms82noYxgqrU+blVALskhcRpJV03zA4T984ldldX4R60EOictJs/v/XltI/Co7vYpWIYHEZRXT/K57DEYSv34Ai5l0GgORuLSyfr7j8M0kHsejISdsHpC4B8Wl90dqKPE43qv6IidxL0bnnodvKvG4XvpI5E4k7kc66fdYyFbicaboZIXEvZnuehy+scTjeOytlL5I3J/Rxv3wzSVeqmmcxD0qT86Hby7xOOnxH9wrEvdq7/pM217icaaiKxL3be744RpMPJ4LTE8TQOKeTdzuEVtMPL54bsYNiftWO328JhMv+9xT8obEvatczsdNJh5PvWfjgMT9qxwO32biKu6q2Eo8q+Z9VVf1qCgFfnojh3NSicTT/kf/60O4fgSJwBC+OvgPp5OtxJ+OL30dV6vZ7Gm3Xi4329PeT+tl9+NsicTPb72P/teH8OMj2Iz3o0xgIL8Vcqtb72YrcYFxrLeX+UT6C63oXCggkbjIvJCX/DQSPPyzxJiGMZV4KjOUt9ftqRg+mlud110CiadSU59W2/3w0XyohcY0AIn/2yqfS36Vp13XXZoSv8rFLv7Dx0XijTZTwci77hwqSzw6LoYP6Ifwj39IvEUut7dL0rHaTVviUSTU+F50UPcg8TZvJ7Ev8rp91bK+xIUaD18Xibcbi91Eaz8bV5i4zP5kZfA1biTeIZe6Ud5+b0Fh4tF6+JiuZ2jBl7iReJe1UOPtBWpMPJoPH1ScnqVH1ReJd3pOh4/sXevDbJWJbyWuRII/wyfxbkL3FkZtU0tVJr4bDR9VPJceVV8k3k1oX+hk2/IzVCYusiX0PPQm+yTuIB8+tHdtf7J1Jn4ZPqq4Cr28jcRdVMPHdlW0/ASdiecClyEk/kl14hK/6rh1IqTOxJ8E7iY5LXryicRdCJ2Nt5yM60w8EnjwReKfVCcenYcPLm5d4aY0cYE5xZyofNKduMzzn1HzDzCcOHdUPuhOXOaCs2WZl93EuS/+SXniIo9/0uatLO0mHnyjCRJ3sxk+utb5GnYTd9+61BMSdxyeyMTxReO/bzbxJPgmzCTu5igxXaNlI0uliQ+/aRh+tyASdySyXVXz/oY6Exd49FME39eQxB1dhg+vbZWXzsQFnuoGv6FC4q5EHv40z6fVmfhl+KiCX22SuCuRxJtvjOtMXGAybfDzFBJ3JbICJmtcq6sycYElEeyG9Zv2xDcSS/Gb9+9UmbjA0uzwOwWRuKulxC6HzRWqTHz4oNiZ9ob2xNciG3k2TqfVmPjr8DEFX5sckbiztchGlo2P+jQmPnx/2lLBlziJu9r97xI/D78pHv6OYUTizl5FnuA/UOIC15qT0KshfiBxR/+3b/H18JukrbtqfB8SdyRzLv4ol5tvF4HHAApuGL4jcUcid1TSB0l8I7HIKfzslJ9I3JHIffHmbVo1JZ7PJVaq1p2v8PomJO5I5ulm4+RpJW9sWy3HU5k3eVVaCidxV1uJ3YK8zlGJD6932u3W6+UmPx/mtdQbAyoVUf1A4o5EZhpOfM40vJ4HZfcpk/SdxBB+Sg+h9we6QeKOZOaLN/71Fklci6zj3V3fi8QdXYYPz/PCNjXmwV/v8wcSdyTSYPP+fnYSr4O/3OcLEndzFHnyc2jc/MxK4vVZ0Vn4TyTuODyJRT9p8/M+E4mn8/HM36/gXiTuRuRFEWnzZdjjJ57VZw1TZ/9G4m5E9jRsXtf22Imn2ehw1nWNeYPEnbyJ7Ew7af4z/nCJ/7iTniRFPV9c8ld1J+A3SNzJUmRLw5bl6I+W+Gi7WS7Xu6dj6N3Du5G4k9PwwcVtu3Y+XOJaphE6IHGnwcm866dl25xHSzzeh98DyBGJuxgPH1vH8B4u8Xii7RFPExJ3IfPezZa3WT1g4nHZct6lCYk7kPkSb13o9YCJX685dd4I/4LEu8ksvm+ZLB49aOJxpmIXiQ4k3k1gf9Z3VdvD7cdM/CGuOkm8k8xrZdveZRU9buJxoWpu+L+QeJeN0GqYsvUJ4MMmHseaVvj8C4l32Iq8Nznu2sFSIvHisHBxqAWXsL2bBH9jVSsSb/csVXjSviL9WzeZ2IpMfr/5yRcVCTUg8TZvC7EvvH37TxJIvPWOzZ+WMveIfqsUX3WSeItc7tuu6OjvexOPjkJ3iX4pz2rnY5F4o3wveM7atZf8NyceRXJ/nz7M1ewN9AWJN9jORebPfii7fty3Jy53lfFJ66QVEv+H3XYhtSvUh84XwX9/4tFOZme3GwcVJX1lKvF4+DBWy/wyl74Yi/edJ6oBEo9eZWaX3VC3wcQ7W4m/3eHleFzNnl5fd8vxYl+NSulz1Lhtn7dfQiQuf9EZJwonrdhKvKzmfVVVXY8KyfPuv6QOj0aCJB5FZ+kT8niu7jmQrcR1cvlmC5S4xBt9vii1TVohce+cVg6ESjxay6zZu6Vs9iGJ++a2NiZY4tHr8NdrflXoeI/VBxL3rOPB/adwifuY5VguXu4ciwck7lXqeochZOLRs/BTgLh7wsI3InGfEuf38gVNXOZFRn8q1dw+JHGPepyThk08WspfdKp5oRWJe5NWPSbfBU7cy7KjTMfsQxL3pTj3OfzgicvsvfundKphzRuJ+5Hu+32q4ROXW8J3Y6Lg9iGJ+5BWfecjKUg8Wvr4FSyC10XiHlTjY9/D15B4tBafenhVh94yi8SlZXe9k09F4tdheJhnmQZ+wxWJiyrr031fWkoSjy4+5lzOg36Rk7igySG/941lWhKPch+NZyGvOklcRlpUiyET7NQk7mPq4dU03NsKSXy4clRdtgP/FutJPJrNh4/lb1WwytQkvvLy5eFVmpTlZHrerlfDn+IJLDErpM54Xw5eTshDTT5Uk3h0SlL1kuRadVkWk3q+nx6eN3Kf3KYcPLap3OPybZ2I/zaqUPdV9CQ+y5+1G4+3+eZquZuJz77YDB3cVvLX+JSPJT6wW8HuquhJHPCCxGEcicM4EodxJA7jSBzGkTiMI3EYR+IwjsRhHInDOBKHcSQO40gcxpE4jCNxGEfiMI7EYRyJwzgSh3EkDuNIHMaROIwjcRhH4jCOxGEcicM4EodxJA7jSBzGkTiMI3EYR+IwjsRhHInDOBKHcSQO40gcxpE4jCNxGEfiMI7EYRyJwzgSh3EkDuNIHMaROIwjcRhH4jCOxGEcicM4EodxJA7jSBzGvSc+Cz0IwJ/ZKMqex4BZz1kUJ4Bh8X8j7kOGagVvAwAAAABJRU5ErkJggg==" alt="DR-logo">
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span class="brand-label">Nyhedsquiz · Et spil fra DR Nyhedsby</span>
+    </div>
+    <p class="eyebrow" style="margin-top:27px">UGENS NYHEDER · UGE 42</p>
+    <h1>Bliv klogere.<br>Byg din egen by.</h1>
+    <p>Test din viden om ugens nyheder, og tjen mønter til din egen by — ét spørgsmål ad gangen.</p>
+  </header>
+
+  <main>
+    <section class="panel" id="home">
+      <p class="eyebrow">UGENS NYHEDER · UGE 42</p>
+      <h2>Ugens nyhedsquiz</h2>
+      <p class="intro">Svar på de syv spørgsmål om ugens nyheder. Hvert rigtigt svar giver dig 10 mønter, som du kan bruge i DR Nyhedsby.</p>
+      <p><strong>Belønning:</strong> 10 mønter pr. rigtigt svar 🪙</p>
+      <div class="button-row">
+        <button class="red" onclick="startQuiz()">Start quizzen</button>
+        <a class="back-link" href="by.html">Tilbage til min by</a>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="quiz">
+      <p class="muted" id="progress"></p>
+      <h2 id="question"></h2>
+      <div id="answers"></div>
+      <p id="feedback" aria-live="polite"></p>
+      <button id="next" class="red hidden" onclick="nextQuestion()">Videre →</button>
+    </section>
+
+    <section class="panel hidden" id="result">
+      <p style="color:#e51c3a;font-size:12px;font-weight:800;letter-spacing:1.5px">DIT RESULTAT · UGE 42</p><h2>Sådan klarede du dig</h2>
+      <h1 id="score"></h1>
+      <p id="resultText"></p>
+      <p id="coinTotal" aria-live="polite"></p>
+      <div id="review"></div>
+      <a class="back-link" href="by.html">Tilbage til min by</a>
+      <button onclick="showFriends()">Sammenlign med venner</button>
+    </section>
+
+    <section class="panel hidden" id="friends">
+      <p style="color:#e51c3a;font-size:12px;font-weight:800;letter-spacing:1.5px">UGENS QUIZ · UGE 42</p><h2>Sammenlign med venner</h2>
+      <p>Ugens resultater · Uge 42</p>
+      <div class="friend"><span>Dig</span><strong id="myScore">Ikke spillet endnu</strong></div>
+      <div class="friend"><span>Ole</span><strong>5/7</strong></div>
+      <div class="friend"><span>Emma</span><strong>6/7</strong></div>
+      <div class="friend"><span>Frederik</span><strong>3/7</strong></div>
+      <p class="muted">Vennernes resultater er eksempeldata i denne prototype.</p>
+      <a class="back-link" href="by.html">Tilbage til min by</a>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        q: "Hvad er der særligt ved fotoet her?",
+        a: [
+          "Det er elefanten fra Elefantordenen",
+          "Det er netop kåret som årets bedste naturfoto",
+          "Det er det første foto taget af en elefant"
+        ],
+        correct: 1,
+        explanation: "Fotografen Federico Veronesi vandt årets bedste naturfoto med billedet af en elefant, der bærer sin døde unge gennem et udtørret flodleje i Namibia."
+      },
+      {
+        q: "I denne uge var der opmærksomhed omkring denne kvinde, fordi...?",
+        a: [
+          "Hun er Danmarks nye ambassadør i USA",
+          "Hun skal forhandle fred mellem Rusland og Ukraine",
+          "Hun er Trumps nye talskvinde"
+        ],
+        correct: 2,
+        explanation: "Katie Zacharia havde debut som Trumps nye pressesekretær i Det Hvide Hus."
+      },
+      {
+        q: "Hvad er der sket med Mont Blanc siden 2023?",
+        a: [
+          "Det er blevet lige så højt som Mount Everest",
+          "Det er skrumpet betydeligt",
+          "Det er vokset med knap to meter"
+        ],
+        correct: 2,
+        explanation: "Mont Blanc er blevet næsten 1,88 meter højere sammenlignet med 2023."
+      },
+      {
+        q: "Hvilken rekord har Kirsten Schwalbe fra Struer netop sat?",
+        a: [
+          "Ældste kvindelige politiker",
+          "Den længstlevende dansker nogensinde",
+          "Bedst sælgende danske forfatter"
+        ],
+        correct: 1,
+        explanation: "Kirsten Schwalbe rundede 112 år og 218 dage og blev den længstlevende dansker nogensinde."
+      },
+      {
+        q: "Hvorfor har Kongehuset offentliggjort et nyt portræt af kronprins Christian?",
+        a: [
+          "Han er netop blevet færdig i Forsvaret",
+          "Han får en anden titel end kronprins",
+          "Han havde fødselsdag i denne uge"
+        ],
+        correct: 2,
+        explanation: "Portrættet blev offentliggjort i anledning af kronprins Christians 21-års fødselsdag."
+      },
+      {
+        q: "Hvad vil Hjørrings borgmester ikke have, at solcellerne bliver kaldt?",
+        a: [
+          "Energiparker",
+          "Jernmarker",
+          "Solcelleparker"
+        ],
+        correct: 1,
+        explanation: "Borgmester Søren Smalbro mener, at de skal kaldes solceller, ikke jernmarker."
+      },
+      {
+        q: "Hvorfor måtte franske supermarkeder tømme deres kølediske?",
+        a: [
+          "EU havde lavet nye regler for kølediske",
+          "Hackere skruede op for temperaturen i kølediskene",
+          "Supermarkederne havde ved en fejl solgt gammelt mad"
+        ],
+        correct: 1,
+        explanation: "Et hackerangreb skruede op for varmen i kølediskene, så maden måtte kasseres."
+      }
+    ];
+
+    let current = 0;
+    let correctCount = 0;
+    let answered = false;
+    let coinsEarned = 0;
+    let lastScore = null;
+
+    function hideAll() {
+      ["home", "quiz", "result", "friends"].forEach(id =>
+        document.getElementById(id).classList.add("hidden")
+      );
+    }
+
+    function startQuiz() {
+      current = 0;
+      correctCount = 0;
+      coinsEarned = 0;
+      hideAll();
+      document.getElementById("quiz").classList.remove("hidden");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const q = questions[current];
+      document.getElementById("progress").textContent =
+        `Spørgsmål ${current + 1} af ${questions.length}`;
+      document.getElementById("question").textContent = q.q;
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("next").classList.add("hidden");
+
+      const answers = document.getElementById("answers");
+      answers.innerHTML = "";
+
+      q.a.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.className = "answer";
+        btn.textContent = "➜  " + answer;
+        btn.onclick = () => chooseAnswer(index);
+        answers.appendChild(btn);
+      });
+    }
+
+    function chooseAnswer(index) {
+      if (answered) return;
+      answered = true;
+
+      const q = questions[current];
+      const buttons = document.querySelectorAll("#answers button");
+      buttons.forEach(btn => btn.disabled = true);
+
+      const feedback = document.getElementById("feedback");
+      if (index === q.correct) {
+        correctCount++;
+        coinsEarned += 10;
+
+        // Del møntsaldoen med 3D-byen via localStorage.
+        const currentBalance = Number(localStorage.getItem("drNyhedsbyCoins") ?? 500);
+        const newBalance = currentBalance + 10;
+        localStorage.setItem("drNyhedsbyCoins", String(newBalance));
+
+        feedback.textContent = "✓ Korrekt! Du får 10 mønter. " + q.explanation;
+      } else {
+        feedback.textContent = "✕ Forkert! " + q.explanation;
+      }
+
+      document.getElementById("next").classList.remove("hidden");
+      document.getElementById("next").textContent =
+        current === questions.length - 1 ? "Se resultat →" : "Videre →";
+    }
+
+    function nextQuestion() {
+      if (!answered) return;
+      current++;
+
+      if (current < questions.length) {
+        renderQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      lastScore = correctCount;
+
+      hideAll();
+      document.getElementById("result").classList.remove("hidden");
+      document.getElementById("score").textContent =
+        `${correctCount} ud af ${questions.length} rigtige`;
+      document.getElementById("resultText").textContent =
+        `Du har tjent ${coinsEarned} mønter i denne quiz!`;
+      const totalBalance = Number(localStorage.getItem("drNyhedsbyCoins") ?? 500);
+      document.getElementById("coinTotal").textContent =
+        `🪙 ${coinsEarned} mønter optjent i quizzen · Din samlede saldo: ${totalBalance} mønter`;
+
+      document.getElementById("myScore").textContent =
+        `${correctCount}/${questions.length}`;
+
+      const review = document.getElementById("review");
+      review.innerHTML = "<h3>Dine svar</h3>";
+
+      questions.forEach((q, i) => {
+        const p = document.createElement("p");
+        p.textContent = `${i + 1}. ${q.q}`;
+        review.appendChild(p);
+      });
+    }
+
+    function showFriends() {
+      hideAll();
+      document.getElementById("friends").classList.remove("hidden");
+      document.getElementById("myScore").textContent =
+        lastScore === null ? "Ikke spillet endnu" : `${lastScore}/7`;
+    }
+
+
+  </script>
+</body>
+</html>

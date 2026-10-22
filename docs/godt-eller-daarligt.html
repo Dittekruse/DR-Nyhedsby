@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Godt eller dårligt for Danmark? – DR Nyhedsby</title>
+  <style>:root{--red:#e31b3d;--ink:#151515;--paper:#f5f4f0;--green:#237a4b;--bad:#c52b3d}*{box-sizing:border-box}html,body{width:100%;height:100%;color:var(--ink);background:#b7d6e2;margin:0;font-family:Arial,Helvetica,sans-serif;overflow:hidden}#scene{z-index:0;position:fixed;inset:0}.topbar{z-index:2;background:linear-gradient(#fff 0%,#ffffffeb 82%,#0000);justify-content:space-between;align-items:center;padding:15px 22px;display:flex;position:fixed;top:0;left:0;right:0}.brand{letter-spacing:.3px;align-items:center;gap:12px;font-weight:900;display:flex}.drmark{color:#fff;letter-spacing:-1px;background:#111;border-radius:2px;place-items:center;width:43px;height:30px;font-weight:900;display:inline-grid}.tag{color:#555;letter-spacing:1.5px;text-transform:uppercase;font-size:12px;font-weight:800}.stats{align-items:center;gap:10px;display:flex}.pill{background:#fff;border:1px solid #d8d8d8;border-radius:999px;padding:8px 13px;font-weight:800;box-shadow:0 3px 12px #0000000c}.intro{z-index:2;text-align:center;pointer-events:none;width:min(720px,92vw);position:fixed;top:84px;left:50%;transform:translate(-50%)}.intro h1{letter-spacing:-1.8px;text-shadow:0 2px #ffffff80;margin:0;font-size:clamp(27px,4vw,45px);line-height:.98}.intro p{color:#26333a;margin:10px 0;font-weight:600}.game{z-index:2;pointer-events:none;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 18px 24px;display:flex;position:fixed;inset:0}.card{border:1px solid #e2e0dc;border-top:7px solid var(--red);pointer-events:auto;background:#fff;border-radius:13px;width:min(460px,94vw);min-height:158px;padding:20px 22px 16px;transition:transform .22s,opacity .22s;box-shadow:0 18px 45px #19313a30}.card .kicker{text-transform:uppercase;letter-spacing:1.5px;color:var(--red);margin-bottom:8px;font-size:11px;font-weight:900}.card h2{letter-spacing:-.7px;margin:0 0 8px;font-size:clamp(21px,3vw,29px);line-height:1.04}.card p{color:#505050;margin:0;font-size:14px;line-height:1.4}.actions{pointer-events:auto;grid-template-columns:1fr 1fr;gap:12px;width:min(600px,94vw);margin-top:12px;display:grid}.sort{color:#fff;border:0;border-radius:12px;min-height:64px;padding:12px 15px;font-size:16px;font-weight:900;transition:transform .1s,filter .15s;box-shadow:0 8px #00000020,0 14px 25px #00000016}.sort:active{transform:translateY(4px);box-shadow:0 4px #00000020}.sort.good{background:linear-gradient(135deg,#278c59,#17663e)}.sort.bad{background:linear-gradient(135deg,#e54a58,#b51c34)}.sort small{opacity:.85;margin-top:3px;font-size:11px;font-weight:700;display:block}.feedback{text-align:center;color:#17252b;text-shadow:0 1px #ffffff80;pointer-events:none;min-height:30px;margin-top:13px;font-weight:900}.overlay{z-index:5;background:#17252bb8;place-items:center;padding:20px;display:grid;position:fixed;inset:0}.modal{background:#fff;border-radius:16px;width:min(520px,100%);padding:30px;box-shadow:0 25px 80px #0005}.modal h2{letter-spacing:-1px;margin:0 0 12px;font-size:34px;line-height:1}.modal p{color:#555;line-height:1.5}.modal button{background:var(--red);color:#fff;cursor:pointer;border:0;border-radius:8px;padding:14px 20px;font-size:16px;font-weight:900}.source{color:#777!important;margin-top:12px!important;font-size:11px!important}.hidden{display:none!important}.foot{z-index:2;text-align:center;color:#2e424a;opacity:.85;pointer-events:none;font-size:10px;position:fixed;bottom:8px;left:0;right:0}@media (height<=700px){.intro{top:70px}.intro p{margin:5px 0}.card{min-height:130px;padding:15px 18px}.sort{min-height:55px}}@media (width<=520px){.topbar{padding:10px 12px}.tag{display:none}.pill{padding:7px 9px;font-size:12px}.intro{top:66px}.intro p{font-size:13px}.game{padding-bottom:20px}.card{min-height:148px}.sort{padding:10px 7px;font-size:14px}}</style>
+  <script type="module" crossorigin src="/DR-Nyhedsby/assets/minispil-ChIKJdxG.js"></script>
+  <link rel="modulepreload" crossorigin href="/DR-Nyhedsby/assets/three.module-DgzRPPL7.js">
+</head>
+<body>
+  <div id="scene"></div>
+  <header class="topbar">
+<div class="brand"><a href="index.html" style="text-decoration:none;color:inherit;"><span class="drmark">DR</span></a><span>NYHEDSBY <span class="tag">/ MINISPIL</span></span></div>
+    <div class="stats"><span class="pill" id="score">Point: 0</span><span class="pill" id="timer">⏱ 45</span><span class="pill" id="coins">🪙 0</span></div>
+  </header>
+  <section class="intro">
+    <h1>Godt eller dårligt<br>for Danmark?</h1>
+    <p>45 sekunder. Store nyheder. Dine domme.</p>
+  </section>
+  <main class="game">
+    <section class="card" id="newsCard">
+      <div class="kicker" id="category">DANSK NYHED</div>
+      <h2 id="headline">Er du klar?</h2>
+      <p id="description">Sortér nyhederne. Du må gerne være lidt hård i din vurdering.</p>
+    </section>
+    <div class="actions">
+      <button class="sort good" id="goodBtn">👍 Godt for Danmark<small>En gevinst, trods alt</small></button>
+      <button class="sort bad" id="badBtn">👎 Dårligt for Danmark<small>Av. Den var ikke god.</small></button>
+    </div>
+    <div class="feedback" id="feedback" aria-live="polite">Vælg en kategori</div>
+  </main>
+  <div class="foot">Et minispil inspireret af nyhedsbegivenheder · Ikke en officiel DR-produktion</div>
+  <div class="overlay" id="startOverlay">
+    <div class="modal">
+      <div class="tag" style="color:#e31b3d;margin-bottom:12px">DR NYHEDSBY · MINISPIL</div>
+      <h2>Godt eller dårligt for Danmark?</h2>
+      <p>Nyhederne flyver forbi, og du skal fælde dommen. Du har 45 sekunder til at sortere store begivenheder fra de seneste år. Rigtige svar giver point og mønter til din by.</p>
+      <button id="startBtn">Lad os få styr på Danmark →</button>
+      <p class="source">Eksempelrunden bruger historiske nyheder. Vurderingen af, om noget er godt eller dårligt, er en del af spillets satire.</p>
+    </div>
+  </div>
+  <div class="overlay hidden" id="endOverlay">
+    <div class="modal">
+      <div class="tag" style="color:#e31b3d;margin-bottom:12px">STATUS PÅ DANMARK</div>
+      <h2 id="endTitle">Sådan gik det</h2>
+      <p id="endText"></p>
+      <button id="againBtn">Tag en runde mere ↻</button>
+      <p class="source">Mønter gemmes i samme browser som DR Nyhedsby.</p>
+    </div>
+  </div>
+</body>
+</html>

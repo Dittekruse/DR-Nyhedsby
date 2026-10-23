@@ -122,7 +122,7 @@ async function loadFriends() {
     .eq('status', 'pending');
 
   if (incomingError) {
-    showMessage('Kunne ikke hente venneanmodninger. Tjek Supabase-politikkerne.');
+    showMessage('Kunne ikke hente venneanmodninger.');
     return;
   }
 
@@ -184,8 +184,10 @@ async function loadFriends() {
     if (!profile) continue;
 friendsList.appendChild(
   createFriendRow(profile.username, 'Se by', () => {
-    window.location.href =
-      `./by.html?user=${encodeURIComponent(profile.id)}`;
+    const cityUrl = new URL('./by.html', window.location.href);
+    cityUrl.searchParams.set('user', otherId);
+
+    window.location.assign(cityUrl.href);
   })
 );
 
